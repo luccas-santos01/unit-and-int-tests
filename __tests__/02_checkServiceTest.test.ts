@@ -26,19 +26,19 @@ describe('02 - Crie testes unitários para a função `create`, da camada `Servi
     const runner = new MochaRunner(expectedSuccessTestTitle, mochaOptions);
     const run = await runner.execute([studentTestPath]);
     expect(run.testResult).to.be.eq('failed');
-  }); 
+  });
   test('2.1 - Valida os testes quando os campos são corretos - sem modificar a implementação do Service, o teste de SUCESSO passa', async function () {
     jest.unmock('../src/services/transactions.service.ts');
 
     const runner = new MochaRunner(expectedSuccessTestTitle, mochaOptions);
-    const run = await runner.execute([studentTestPath]);      
+    const run = await runner.execute([studentTestPath]);
     expect(run.testResult).to.be.eq('passed');
   });
   test('2.1 - Valida os testes quando os campos são corretos - modifica corretamente a implementação do Service, o teste de SUCESSO passa', async function () {
     jest.mock('../src/services/transactions.service.ts');
     (transactionService.create as jest.Mock).mockImplementation(async (data) => ({ status: 'SUCCESSFUL', data }));
     const runner = new MochaRunner(expectedSuccessTestTitle, mochaOptions);
-    const run = await runner.execute([studentTestPath]);      
+    const run = await runner.execute([studentTestPath]);
     expect(run.testResult).to.be.eq('passed');
   });
 
@@ -57,7 +57,7 @@ describe('02 - Crie testes unitários para a função `create`, da camada `Servi
     });
 
     const runner = new MochaRunner(expectedEmptyFieldTestTitle, mochaOptions);
-    const run = await runner.execute([studentTestPath]);      
+    const run = await runner.execute([studentTestPath]);
     expect(run.testResult).to.be.eq('failed');
   });
 
@@ -65,7 +65,7 @@ describe('02 - Crie testes unitários para a função `create`, da camada `Servi
     jest.unmock('../src/services/transactions.service.ts');
 
     const runner = new MochaRunner(expectedEmptyFieldTestTitle, mochaOptions);
-    const run = await runner.execute([studentTestPath]);      
+    const run = await runner.execute([studentTestPath]);
     expect(run.testResult).to.be.eq('passed');
   });
 });

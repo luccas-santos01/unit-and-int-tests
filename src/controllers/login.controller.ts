@@ -5,9 +5,9 @@ import mapStatusHTTP from '../utils/mapStatusHTTP';
 async function login(req: Request, res: Response) {
   const serviceResponse = await loginService.verifyLogin(req.body);
   if (serviceResponse.status !== 'SUCCESSFUL') {
-    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);  
+    return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
   }
-  
+
   res.status(200).json(serviceResponse.data);
 }
 

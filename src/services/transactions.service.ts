@@ -43,18 +43,18 @@ async function create(
   return responseService;
 }
 
-async function findById(id: number): Promise<ServiceResponse<Transaction>> { 
-  const transaction = await TransactionModel.findByPk(id); 
-  
-  let serviceResponse: ServiceResponse<Transaction>; 
-  
-  if (!transaction) { 
-    serviceResponse = { status: 'NOT_FOUND', data: { message: 'Transaction not found' } }; 
-    return serviceResponse; 
-  } 
+async function findById(id: number): Promise<ServiceResponse<Transaction>> {
+  const transaction = await TransactionModel.findByPk(id);
 
-  serviceResponse = { status: 'SUCCESSFUL', data: transaction.dataValues }; 
-  return serviceResponse; 
+  let serviceResponse: ServiceResponse<Transaction>;
+
+  if (!transaction) {
+    serviceResponse = { status: 'NOT_FOUND', data: { message: 'Transaction not found' } };
+    return serviceResponse;
+  }
+
+  serviceResponse = { status: 'SUCCESSFUL', data: transaction.dataValues };
+  return serviceResponse;
 }
 
 export default {
